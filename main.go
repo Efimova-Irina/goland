@@ -9,26 +9,53 @@ func main() {
     var oper string
     fmt.Println("Введите первое число:")
     fmt.Scan(&a)
-    fmt.Println("Выберете операцию:")
+    fmt.Println("Выберете операцию: +, -, *, / ")
     fmt.Scan(&oper)
     fmt.Println("Введите второе число:")
     fmt.Scan(&b)
 
-    if oper == "+" { 
-        sum(a, b)
+    switch oper {
+        case "+": 
+            sum(a, b)
+        case "*":
+            mult(a, b)  
+        case "-":
+            minus(a, b)  
+        case "/":
+            div(a, b)
+        default:
+            znak(oper)            
+    
     }
     
-    if oper == "*"{
-        mult(a, b)
+}
+
+
+// функция сложения
+func sum(a int, b int) { 
+    fmt.Println(a, "+", b, "=", a + b)
+}
+
+// функция сложения
+func mult(a int, b int) { 
+    fmt.Println(a, "*", b, "=", a * b)
+}
+// функция вычитания
+func minus(a int, b int) { 
+    fmt.Println(a, "-", b, "=", a - b)
+}
+
+// функция деления
+func div(a int, b int) { 
+   if b == 0 {
+    fmt.Println("Делить на ноль нельзя!")
+   } else {
+    fmt.Printf("%x / %x = %f", a, b, a / b)
     }
 }
 
-// функция сложения
-func sum(a int, b int) int { 
-    return a + b
+// функция определения нужной операции
+func znak(oper string) {
+    fmt.Println("Читать не умеешь!!! Нет такой операции!")
 }
 
-// функция сложения
-func mult(a int, b int) int { 
-    return a * b
-}
