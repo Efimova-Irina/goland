@@ -50,7 +50,7 @@ func div(a int, b int) {
    if b == 0 {
     fmt.Println("Делить на ноль нельзя!")
    } else {
-    fmt.Printf("%x / %x = %f", a, b, a / b)
+    fmt.Println( a, "/", b, "=", float32(a) / float32(b))
     }
 }
 
