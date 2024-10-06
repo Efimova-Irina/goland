@@ -5,57 +5,72 @@ import "fmt"
 
 
 func main() {
-    var a, b int
-    var oper string
-    fmt.Println("Введите первое число:")
-    fmt.Scan(&a)
-    fmt.Println("Выберете операцию: +, -, *, / ")
-    fmt.Scan(&oper)
-    fmt.Println("Введите второе число:")
-    fmt.Scan(&b)
+    a, b, oper := vparam()
+    var res int
+    var err error
 
     switch oper {
         case "+": 
-            sum(a, b)
+            res = sum(a, b)
         case "*":
-            mult(a, b)  
+           res = mult(a, b)  
         case "-":
-            minus(a, b)  
+            res = minus(a, b)  
         case "/":
-            div(a, b)
+            res, err = div(a, b)
+            if err != nil {
+                fmt.Printf("error: %v", err)
+            }
         default:
             znak(oper)            
     
     }
-    
+    fmt.Print(a, oper, b, "=", res)   
+}
+
+// функция ввода данных
+func vparam() (int, int, string) {
+    var a, b int
+    var oper string
+
+    fmt.Print("Введите первое число: ")
+    fmt.Scanln(&a)
+
+    fmt.Print("Введите второе число: ")
+    fmt.Scanln(&b)
+
+    fmt.Print("Введите оператор (+, -, *, /): ")
+    fmt.Scanln(&oper)
+
+    return a, b, oper
 }
 
 
 // функция сложения
-func sum(a int, b int) { 
-    fmt.Println(a, "+", b, "=", a + b)
+func sum(a int, b int) int { 
+    return a + b
 }
 
-// функция сложения
-func mult(a int, b int) { 
-    fmt.Println(a, "*", b, "=", a * b)
+// функция умножения
+func mult(a int, b int) int { 
+    return a * b
 }
 // функция вычитания
-func minus(a int, b int) { 
-    fmt.Println(a, "-", b, "=", a - b)
+func minus(a int, b int) int { 
+    return a - b
 }
 
 // функция деления
-func div(a int, b int) { 
-   if b == 0 {
-    fmt.Println("Делить на ноль нельзя!")
-   } else {
-    fmt.Println( a, "/", b, "=", float32(a) / float32(b))
-    }
+func div(a int, b int) (int, error) {
+    if b == 0 {
+       return 0, fmt.Errorf("Делить на ноль нельзя!")
+     }
+   
+     return a / b, nil
 }
 
 // функция определения нужной операции
-func znak(oper string) {
-    fmt.Println("Читать не умеешь!!! Нет такой операции!")
+func znak(oper string) error {
+    return fmt.Errorf("Читать не умеешь!!! Нет такой операции!")
 }
 
