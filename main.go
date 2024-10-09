@@ -5,7 +5,7 @@ import "fmt"
 
 
 func main() {
-    a, b, oper := vparam()
+    a, b, oper := vvod()
     var res int
     var err error
 
@@ -29,7 +29,7 @@ func main() {
 }
 
 // функция ввода данных
-func vparam() (int, int, string) {
+func vvod() (int, int, string) {
     var a, b int
     var oper string
 
